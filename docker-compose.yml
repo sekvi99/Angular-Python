@@ -1,8 +1,11 @@
-# Placeholder for future docker-compose file
-version: "3"
+version: '3.4'
+
+networks:
+  app:
 
 services:
   database:
+    container_name: postgres
     image: postgres
     ports:
       - "5432:5432"
@@ -11,6 +14,8 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: example
       POSTGRES_DB: db
+    networks:
+      - app
 
   adminer:
     image: adminer
@@ -19,15 +24,16 @@ services:
       - database
     ports:
       - 8080:8080
+    networks:
+      - app
       
-  # TODO Set up Python api after conf
-  # api:
-  #   build: .
-  #   ports:
-  #     - "8000:80"
-  #   depends_on:
-  #     - db
-  #   volumes:
-  #     - .:/app
-  #   environment:
-  #     DATABASE_URL: postgresql://youruser:yourpassword@db:5432/yourdb
+  python-api:
+    build:
+      context: apps/python-api/
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - database
+    networks:
+      - app
