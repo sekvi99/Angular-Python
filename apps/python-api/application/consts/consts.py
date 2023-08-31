@@ -14,3 +14,7 @@ DB_DATABASE: Final[str] = ENV_HANDLER.read_var_by_name('DB_DATABASE')           
 DB_PORT: Final[str] = ENV_HANDLER.read_var_by_name('DB_PORT')                      # Extracting port for database
 DB_PROVIDER: Final[str] = os.getenv('PROD_URL') if os.getenv('PROD_URL') is not None else 'localhost'
 DB_POSTGRES_URL: Final[str] = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_PROVIDER}:{DB_PORT}/{DB_DATABASE}' # Url for connecting with postgres
+
+SECRET_KEY: Final[str] = ENV_HANDLER.read_var_by_name('SECRET_KEY')                # Extracting secret key for api
+ALGORITHM: Final[str] = ENV_HANDLER.read_var_by_name('ALGORITHM')                  # Extracting algorithm name for hashing
+ACCESS_TOKEN_EXPIRE_MINUTES: Final[int] = int(ENV_HANDLER.read_var_by_name('ACCESS_TOKEN_EXPIRE_MINUTES')) # Extracting number of minutes for token expire

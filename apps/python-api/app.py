@@ -1,11 +1,14 @@
 import logging
+from datetime import timedelta
 
 import bcrypt
 from fastapi import FastAPI, HTTPException, Path, Query
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from application.consts.consts import DB_POSTGRES_URL
+from application.consts.consts import (ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM,
+                                       DB_POSTGRES_URL, SECRET_KEY)
+from application.helpers.helpers import create_access_token
 from application.models.models import Base, User
 from application.responses.user_response import UserResponse
 
@@ -116,10 +119,20 @@ async def delete_user(
     
 # Endpoints for handling user session
 
-@app.post('api/authenticate', tags=['User login'])
-async def login():
-    ...
+@app.post('/api/authenticate', tags=['User login'])
+async def login(
+    username: str,
+    password: str):
+    # Retrieve the user by username
+    db = SessionLocal()
+    db_user = db.query(User).filter(User.username == username).first()
     
-@app.get('api/get-token', tags=['User login'])
-async def get_token():
-    ...
+    db.close()
+
+    if db_user is None or not db_user.check_password(password):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = await create_access_token({"sub": db_user.username}, ACCESS_TOKEN_EXPIRE_MINUTES, SECRET_KEY, ALGORITHM)
+    
+    return {"access_token": access_token, "token_type": "bearer"}
