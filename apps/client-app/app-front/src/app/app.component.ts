@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app-front';
+
+  supportedLanguages: string[] = ['pl', 'en'];
+
+  constructor(private translateService: TranslateService) {
+    this.translateService.addLangs(this.supportedLanguages);
+    this.translateService.setDefaultLang(this.supportedLanguages[0]); // pl
+    this.translateService.use('pl');
+  }
+
 }

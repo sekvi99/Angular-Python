@@ -9,6 +9,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { SidenavComponent } from './common/sidenav/sidenav.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { TableFilterComponent } from './common/table-filter/table-filter.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,15 @@ import { TableFilterComponent } from './common/table-filter/table-filter.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {return new TranslateHttpLoader(http, './assets/i18n/', '.json');},
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
