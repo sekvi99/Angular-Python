@@ -1,1 +1,32 @@
-<p>footer works!</p>
+<div class="container">
+    <div class="footer-container">
+        <footer>
+            <!-- socials -->
+            <div class="social-icons">
+                <a [href]="[item.url]" *ngFor="let item of socials">
+                    <i [class]="item.icon"></i>
+                    <span>{{item.name}}</span>
+                </a>
+            </div>
+    
+            <!-- routes -->
+            <div class="footer-nav">
+                <ul>
+                    <li *ngFor="let item of nav">
+                        <a [routerLink]="[item.url]">
+                            <span>{{item.name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- footer bottom -->
+            <div class="footer-bottom">
+                <p>Copyright &copy;2023 Designed by 
+                    <span class="designer">sekvi</span>
+                </p>
+            </div>
+        </footer>            
+    </div>
+</div>
+
