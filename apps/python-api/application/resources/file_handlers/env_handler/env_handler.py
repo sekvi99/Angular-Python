@@ -2,9 +2,10 @@ import logging
 from dataclasses import dataclass
 from typing import Dict
 
+from dotenv import dotenv_values
+
 from application.resources.file_handlers.abstract_file_handler import \
     FileHandler
-from dotenv import dotenv_values
 
 
 @dataclass
