@@ -1,6 +1,10 @@
 {
     "app.title": "App",
 
+    "login.username": "Username",
+    "login.password": "Password",
+    "login.submit": "Login",
+
     "nav.home": "Main Page",
     "nav.about": "About Project",
     "nav.register": "Register",

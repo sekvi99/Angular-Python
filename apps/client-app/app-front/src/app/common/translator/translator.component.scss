@@ -2,4 +2,16 @@ button {
     position: fixed;
     top: 10px;
     right: 10px;
+    background-color: var(--gray-dark);
+    color: var(--white);
+    padding: 8px 24px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+
+}
+
+button:hover{
+    background-color: var(--primary);
+    font-weight: 500;
+    transition: 0.75s;
 }

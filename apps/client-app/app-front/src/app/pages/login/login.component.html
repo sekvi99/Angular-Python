@@ -1,1 +1,19 @@
-<p>login works!</p>
+<div class="container">
+    <form (submit)="login()" autocomplete="new-password">
+        <h1>Login</h1>
+
+        <!-- Username -->
+        <div class="form-control">
+            <label for="username">{{'login.username' | translate}}</label>
+            <input id="username" autocomplete="new-password" type="username">
+        </div>
+
+        <!-- Password -->
+        <div class="form-control">
+            <label for="password">{{'login.password' | translate}}</label>
+            <input id="password" autocomplete="new-password" type="password">
+        </div>
+
+        <button type="submit">{{'login.submit' | translate}} &#8594;</button>
+    </form>
+</div>
