@@ -13,7 +13,7 @@ class User(Base):
     
     id = Column(Integer, primary_key=True, index=True) # User id in database
     username = Column(String, unique=True, index=True) # User username in database
-    e_mail = Column(String, unique=True, index=True)   # User e-mail in database
+    email = Column(String, unique=True, index=True)   # User e-mail in database
     password_hash = Column(String, nullable=False)     # User password hash in database
     connected_mail = Column(String, nullable=False)    # User supported e-mail not required
     
