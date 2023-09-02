@@ -10,11 +10,13 @@ export class AppComponent {
   title = 'app-front';
 
   supportedLanguages: string[] = ['pl', 'en'];
+  currentLanguage: string;
 
   constructor(private translateService: TranslateService) {
     this.translateService.addLangs(this.supportedLanguages);
     this.translateService.setDefaultLang(this.supportedLanguages[0]); // pl
     this.translateService.use('pl');
+    this.currentLanguage = 'pl';
   }
 
 }

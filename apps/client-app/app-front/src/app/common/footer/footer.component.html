@@ -3,7 +3,7 @@
         <footer>
             <!-- socials -->
             <div class="social-icons">
-                <a [href]="[item.url]" *ngFor="let item of socials">
+                <a [href]="[item.url]" *ngFor="let item of socials" target="_blank">
                     <i [class]="item.icon"></i>
                     <span>{{item.name}}</span>
                 </a>
@@ -12,9 +12,9 @@
             <!-- routes -->
             <div class="footer-nav">
                 <ul>
-                    <li *ngFor="let item of nav">
-                        <a [routerLink]="[item.url]">
-                            <span>{{item.name}}</span>
+                    <li *ngFor="let item of footerPages">
+                        <a [routerLink]="[item.routeLink]">
+                            <span>{{item.translation | translate}}</span>
                         </a>
                     </li>
                 </ul>

@@ -1,0 +1,9 @@
+{
+    "app.title": "App",
+
+    "nav.home": "Main Page",
+    "nav.about": "About Project",
+    "nav.register": "Register",
+    "nav.login": "Sign In",
+    "nav.logout": "Logout"
+}

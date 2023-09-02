@@ -9,7 +9,7 @@
         <li class="sidenav-nav-item" *ngFor="let data of navPages">
             <a class="sidenav-nav-link" [routerLink]="[data.routeLink]">
                 <i class="sidenav-link-icon" [class]="data.icon"></i>
-                <span class="sidenav-link-text" *ngIf="collapsed">{{data.currentLabel}}</span>
+                <span class="sidenav-link-text" *ngIf="collapsed">{{data.translation | translate}}</span>
             </a>
         </li>
     </ul>

@@ -1,0 +1,9 @@
+{
+    "app.title": "Aplikacja",
+
+    "nav.home": "Strona Główna",
+    "nav.about": "O Projekcie",
+    "nav.register": "Zarejestruj Się",
+    "nav.login": "Zaloguj Się",
+    "nav.logout": "Wyloguj Się"
+}

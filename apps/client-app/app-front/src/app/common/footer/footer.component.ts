@@ -1,33 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { socials } from './socials';
 import { ISocialLinks } from 'src/app/interfaces/social-interface';
 import { pages } from '../sidenav/pages';
-import { TranslateService } from '@ngx-translate/core';
-
-type FooterNav = {
-    url?: string | null | undefined;
-    name?: string | undefined;
-}
+import { INavigationData } from 'src/app/interfaces/nav-interface';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
 
-  socials: ISocialLinks[] = [];
-  nav: FooterNav[] = [];
+  socials: ISocialLinks[];
+  footerPages: INavigationData[];
 
-  constructor(private translateService: TranslateService) {}
-
-  ngOnInit(): void {
-      this.socials = socials;
-      let filteredPages = pages.filter((page) => page.routeLink === 'home' || page.routeLink === 'about');
-      this.nav= filteredPages.map(page => ({ 
-          url: page.routeLink,
-          name: this.translateService.currentLang === 'pl' ? page.labelPl : page.labelEng
-        }))
+  constructor() {
+    this.socials = socials;
+    this.footerPages = pages.filter((page) => page.routeLink === 'home' || page.routeLink === 'about');
   }
 
 }

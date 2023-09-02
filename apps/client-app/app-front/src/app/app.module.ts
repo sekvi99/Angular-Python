@@ -12,6 +12,7 @@ import { TableFilterComponent } from './common/table-filter/table-filter.compone
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslatorComponent } from './common/translator/translator.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     LoginComponent,
     SidenavComponent,
     FooterComponent,
-    TableFilterComponent
+    TableFilterComponent,
+    TranslatorComponent
   ],
   imports: [
     BrowserModule,
