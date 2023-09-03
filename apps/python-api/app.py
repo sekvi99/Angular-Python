@@ -12,6 +12,7 @@ from application.helpers.api_key import authorize
 from application.helpers.helpers import create_access_token
 from application.models.models import Base, User
 from application.responses.user_create_response import UserCreateRequest
+from application.responses.user_login_response import LoginRequest
 from application.responses.user_response import UserResponse
 
 app = FastAPI()
@@ -46,7 +47,6 @@ async def create_user(
     # Create a new user instance
     new_user = User(username=user_data.username, email=user_data.email, 
                     password_hash=password_hash, connected_mail=user_data.connected_mail)
-    print(new_user)
     
     # Add the user to the session and commit to the database
     db.add(new_user)
@@ -150,18 +150,20 @@ async def delete_user(
 
 @app.post('/api/authenticate', tags=['User login'])
 async def login(
-    username: str,
-    password: str):
+    login_request: LoginRequest
+):
     # Retrieve the user by username
     db = SessionLocal()
-    db_user = db.query(User).filter(User.username == username).first()
+    db_user = db.query(User).filter(User.username == login_request.username).first()
     
-    db.close()
-
-    if db_user is None or not db_user.check_password(password):
+    if db_user is None or not bcrypt.checkpw(login_request.password.encode('utf-8'), db_user.password_hash.encode('utf-8')):
+        db.close()
         raise HTTPException(status_code=401, detail="Invalid credentials")
     
+    # Generate an access token
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = await create_access_token({"sub": db_user.username}, ACCESS_TOKEN_EXPIRE_MINUTES, SECRET_KEY, ALGORITHM)
+    
+    db.close()
     
     return {"access_token": access_token, "token_type": "bearer"}

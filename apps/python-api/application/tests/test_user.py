@@ -1,7 +1,9 @@
+import time
+
 import bcrypt
 import pytest
 from fastapi.testclient import TestClient
-import time
+
 from app import SessionLocal, app
 from application.consts.api_consts import API_KEY, API_KEY_NAME
 
@@ -45,8 +47,8 @@ def test_get_user(test_db):
 
 def test_valid_authentication():
     valid_credentials = {"username": test_user_data["username"], "password": test_user_data["password"]}
-    url = f"/api/authenticate?username={valid_credentials['username']}&password={valid_credentials['password']}"
-    response = client.post(url)
+    url = f"/api/authenticate"
+    response = client.post(url, headers={'accept': 'application/json', 'Content-Type': 'application/json'}, json=valid_credentials)
     assert response.status_code == 200
     data = response.json()
     assert "access_token" in data
@@ -86,6 +88,6 @@ def test_modify_user(test_db):
 
 def test_invalid_authentication():
     invalid_credentials = {"username": "testuser", "password": "wrongpassword"}
-    url = f"/api/authenticate?username={invalid_credentials['username']}&password={invalid_credentials['password']}"
-    response = client.post(url)
+    url = f"/api/authenticate"
+    response = client.post(url, headers={'accept': 'application/json', 'Content-Type': 'application/json'}, json=invalid_credentials)
     assert response.status_code == 401
