@@ -1,17 +1,21 @@
 <div class="container">
-    <form (submit)="login()" autocomplete="new-password">
+    <form (submit)="onLogin()" autocomplete="new-password">
         <h1>Login</h1>
+
+        <div *ngIf="isErrorInLogin" class="alert alert-danger" role="alert">
+            {{'login.failed' | translate}}
+          </div>
 
         <!-- Username -->
         <div class="form-control">
             <label for="username">{{'login.username' | translate}}</label>
-            <input id="username" autocomplete="new-password" type="username">
+            <input [(ngModel)]="authRequest.username" id="username" autocomplete="new-password" type="username" [ngModelOptions]="{ standalone: true }" />
         </div>
 
         <!-- Password -->
         <div class="form-control">
             <label for="password">{{'login.password' | translate}}</label>
-            <input id="password" autocomplete="new-password" type="password">
+            <input [(ngModel)]="authRequest.password" id="password" autocomplete="new-password" type="password" [ngModelOptions]="{ standalone: true }" />
         </div>
 
         <button type="submit">{{'login.submit' | translate}} &#8594;</button>

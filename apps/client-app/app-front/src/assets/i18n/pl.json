@@ -4,6 +4,7 @@
     "login.username": "Nazwa Użytkownika",
     "login.password": "Hasło",
     "login.submit": "Zaloguj Się",
+    "login.failed": "Wystąpił błąd podcas logowania", 
 
     "nav.home": "Strona Główna",
     "nav.about": "O Projekcie",

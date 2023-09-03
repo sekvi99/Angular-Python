@@ -4,6 +4,7 @@
     "login.username": "Username",
     "login.password": "Password",
     "login.submit": "Login",
+    "login.failed": "Error has occured while login", 
 
     "nav.home": "Main Page",
     "nav.about": "About Project",

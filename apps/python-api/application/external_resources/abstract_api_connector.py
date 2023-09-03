@@ -7,7 +7,7 @@ class ExternalResourceApiHandler(ABC):
     
     url: str # Api url to hit
     api_key: str # String representation of api key
-    obtained_data: dict[any] = field(init=False) # Obtained data set after get_api_response method
+    obtained_data: dict = field(init=False) # Obtained data set after get_api_response method
     
     @abstractmethod
     def get_api_response(self) -> int:
@@ -21,7 +21,7 @@ class ExternalResourceApiHandler(ABC):
         ...
         
     @abstractmethod
-    def transform_api_response_to_desired_format(self) -> dict[any]:
+    def transform_api_response_to_desired_format(self) -> dict:
         """
         Method should transform obtained data field do desired format.
 

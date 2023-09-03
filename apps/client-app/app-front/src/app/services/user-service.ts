@@ -15,10 +15,23 @@ export class UserService {
 
     constructor(private httpClient: HttpClient) { }
 
-    // authenticate(authData: AuthenticationDto): Observable<boolean> {
+    authenticate(authData: AuthenticationDto): Observable<boolean> {
 
+        return this.httpClient.post<AuthenticationResponseDto>(`${environment.url}/authenticate`, authData, {observe: 'response'})
+        .pipe(
+            map(response => {
+                if (response.status !== 200)
+                    return false;
+                this.storeToken(response.body?.accessToken!);
+                return true;
+            }),
+            catchError(error => {
+                ;
+                return of(false);
+            })
+        );
 
-    // }
+    }
 
     logout() {
         localStorage.removeItem(this.jwtToken);
