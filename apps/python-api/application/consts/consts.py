@@ -6,6 +6,7 @@ from application.resources.file_handlers.env_handler.env_handler import \
 
 """Set Absoulte Path"""
 APP_DIR: Final[str] = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # Path to application directory
+API_ENV_FILE: Final[str] = os.path.join(APP_DIR, r'resources/files/env/api_key.env')   # Path yto youtube .env key
 ENV_FILE: Final[str] = os.path.join(APP_DIR, r'resources/files/env/.env')         # Path to .env file
 
 """.ENV File consts"""
