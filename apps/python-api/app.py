@@ -6,14 +6,23 @@ from fastapi import Depends, FastAPI, HTTPException, Path, Query
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from application.consts.api_consts import YT_API_KEY
 from application.consts.consts import (ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM,
                                        DB_POSTGRES_URL, SECRET_KEY)
+from application.external_resources.yt_stats.yt_stats import \
+    YouTubeStatsApiHandler
 from application.helpers.api_key import authorize
 from application.helpers.helpers import create_access_token
+from application.helpers.token_validation import get_current_user
 from application.models.models import Base, User
 from application.responses.user_create_response import UserCreateRequest
 from application.responses.user_login_response import LoginRequest
 from application.responses.user_response import UserResponse
+from application.responses.external_responses.yt_stats_response import YouTubeRequestModel
+import logging
+
+# Setting up logger
+logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 
 app = FastAPI()
 
@@ -167,3 +176,20 @@ async def login(
     db.close()
     
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+# Youtube data extract endpoints
+@app.get('/api/youtube-stats/')
+async def youtube_stats(
+    url: str = Query(..., description='URL of the YouTube video'),
+    current_user: dict = Depends(get_current_user)
+    ):
+    
+    yt_handler = YouTubeStatsApiHandler(url=url, api_key=YT_API_KEY)
+    status = yt_handler.get_api_response()
+    
+    if status != 200:
+        raise HTTPException(status_code=status, detail='Unable to extract data from yt api')
+    
+    else:
+        return yt_handler.transform_api_response_to_desired_format()
