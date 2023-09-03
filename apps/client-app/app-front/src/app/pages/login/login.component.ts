@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.userService.authenticate(this.authRequest).subscribe(response => {
       if (response) {
         this.authEventService.login();
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/home');
       } else {
         this.isErrorInLogin = true;
       }
