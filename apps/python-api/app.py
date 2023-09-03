@@ -20,11 +20,23 @@ from application.responses.user_login_response import LoginRequest
 from application.responses.user_response import UserResponse
 from application.responses.external_responses.yt_stats_response import YouTubeRequestModel
 import logging
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # Setting up logger
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 
 app = FastAPI()
+
+# Configure CORS (Cross-Origin Resource Sharing)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # TODO Set up amount of domains for accessing resource
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 logging.info('Creating database')
 engine = create_engine(DB_POSTGRES_URL)
