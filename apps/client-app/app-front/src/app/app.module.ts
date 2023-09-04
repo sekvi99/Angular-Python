@@ -14,6 +14,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslatorComponent } from './common/translator/translator.component';
 import { Subscription } from 'rxjs';
+import { LogoutComponent } from './common/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { Subscription } from 'rxjs';
     SidenavComponent,
     FooterComponent,
     TableFilterComponent,
-    TranslatorComponent
+    TranslatorComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

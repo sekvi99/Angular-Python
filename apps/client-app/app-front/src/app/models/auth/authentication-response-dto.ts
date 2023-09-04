@@ -1,4 +1,4 @@
 export interface AuthenticationResponseDto {
-    accessToken: string,
+    access_token: string,
     tokenType: string
 }

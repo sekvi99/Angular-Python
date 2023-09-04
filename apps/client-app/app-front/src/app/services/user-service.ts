@@ -11,7 +11,7 @@ import { AuthenticationResponseDto } from '../models/auth/authentication-respons
 })
 
 export class UserService {
-    jwtToken: string = 'jwt';
+    jwtToken: string = 'appToken';
 
     constructor(private httpClient: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class UserService {
             map(response => {
                 if (response.status !== 200)
                     return false;
-                this.storeToken(response.body?.accessToken!);
+                this.storeToken(response.body?.access_token!);
                 return true;
             }),
             catchError(error => {
