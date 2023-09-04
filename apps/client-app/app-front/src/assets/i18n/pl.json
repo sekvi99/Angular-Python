@@ -10,5 +10,12 @@
     "nav.about": "O Projekcie",
     "nav.register": "Zarejestruj Się",
     "nav.login": "Zaloguj Się",
-    "nav.logout": "Wyloguj Się"
+    "nav.logout": "Wyloguj Się",
+
+    "video.submit": "Przetwórz Wideo",
+
+    "stats.comments": "Komentarze: ",
+    "stats.likes": "Polubienia: ",
+    "stats.favourites": "Ulubione: ",
+    "stats.views": "Wyświetlenia : "
 }

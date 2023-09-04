@@ -10,5 +10,11 @@
     "nav.about": "About Project",
     "nav.register": "Register",
     "nav.login": "Sign In",
-    "nav.logout": "Logout"
+    "nav.logout": "Logout",
+
+    "video.submit": "Process Video",
+    "stats.comments": "Comments: ",
+    "stats.likes": "Likes: ",
+    "stats.favourites": "Favourites: ",
+    "stats.views": "Views: "
 }

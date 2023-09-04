@@ -1,4 +1,30 @@
 <div class="container">
     <h1>{{ 'app.title' | translate }}</h1>
+
+    <div class="form-container">
+        <form (submit)="onVideoSubmit()" class="video-input">
+             
+            <div class="form-control">
+                <label for="video" class="stats-label"></label>
+                <input [(ngModel)]="videoUrl" type="text" id="video" class="video-input" [ngModelOptions]="{ standalone: true }" >
+            </div>
+
+            <button type="submit">{{'video.submit' | translate}} &#8594;</button>
+
+        </form>
+    </div>
+
+    <div class="content">
+        <mat-tab-group dynamicHeight>
+            <mat-tab label="Stats">
+                <h4 class="stats-header">{{'stats.comments' | translate}} <span>{{stats?.comments}}</span></h4>
+                <h4 class="stats-header">{{'stats.likes' | translate}} <span>{{stats?.likes}}</span></h4>
+                <h4 class="stats-header">{{'stats.favourites' | translate}} <span>{{stats?.favourites}}</span></h4>
+                <h4 class="stats-header">{{'stats.views' | translate}} <span>{{stats?.views}}</span></h4>
+            </mat-tab>
+            <mat-tab label="Dashboard">D</mat-tab>
+        </mat-tab-group>
+    </div>
+
 </div>
 

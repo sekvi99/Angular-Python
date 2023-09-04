@@ -15,6 +15,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslatorComponent } from './common/translator/translator.component';
 import { Subscription } from 'rxjs';
 import { LogoutComponent } from './common/logout/logout.component';
+import { StatsDashboardComponent } from './common/stats-dashboard/stats-dashboard.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -26,13 +30,16 @@ import { LogoutComponent } from './common/logout/logout.component';
     FooterComponent,
     TableFilterComponent,
     TranslatorComponent,
-    LogoutComponent
+    LogoutComponent,
+    StatsDashboardComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatTabsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
