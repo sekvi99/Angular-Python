@@ -1,23 +1,41 @@
 <div class="container">
-    <form (submit)="onLogin()" autocomplete="new-password">
-        <h1>Login</h1>
-
-        <div *ngIf="isErrorInLogin" class="alert alert-danger" role="alert">
-            {{'login.failed' | translate}}
-          </div>
-
-        <!-- Username -->
-        <div class="form-control">
-            <label for="username">{{'login.username' | translate}}</label>
-            <input [(ngModel)]="authRequest.username" id="username" autocomplete="new-password" type="username" [ngModelOptions]="{ standalone: true }" />
-        </div>
-
-        <!-- Password -->
-        <div class="form-control">
-            <label for="password">{{'login.password' | translate}}</label>
-            <input [(ngModel)]="authRequest.password" id="password" autocomplete="new-password" type="password" [ngModelOptions]="{ standalone: true }" />
-        </div>
-
-        <button type="submit">{{'login.submit' | translate}} &#8594;</button>
+    <form (ngSubmit)="onLogin()" autocomplete="new-password" [formGroup]="loginForm">
+      <h1>Login</h1>
+  
+      <div *ngIf="isErrorInLogin" class="alert alert-danger" role="alert">
+        {{ 'login.failed' | translate }}
+      </div>
+  
+      <!-- Username -->
+      <mat-form-field class="form-control">
+        <mat-label>{{ 'login.username' | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="username"
+          id="username"
+          autocomplete="new-password"
+          type="text"
+        />
+        <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+          {{ 'Username is required' }}
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Password -->
+      <mat-form-field class="form-control">
+        <mat-label>{{ 'login.password' | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          id="password"
+          autocomplete="new-password"
+          type="password"
+        />
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          {{ 'Password is required' }}
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">{{ 'login.submit' | translate }} &#8594;</button>
     </form>
-</div>
+  </div>

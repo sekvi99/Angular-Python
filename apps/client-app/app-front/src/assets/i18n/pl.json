@@ -13,6 +13,9 @@
     "nav.logout": "Wyloguj Się",
 
     "video.submit": "Przetwórz Wideo",
+    "video.label": "Podaj Url Wideo",
+    "video.required": "Url Jest Wymagany",
+    "video.invalidUrl": "Błędny Url",
 
     "stats.comments": "Komentarze: ",
     "stats.likes": "Polubienia: ",

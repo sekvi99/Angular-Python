@@ -2,17 +2,19 @@
     <h1>{{ 'app.title' | translate }}</h1>
 
     <div class="form-container">
-        <form (submit)="onVideoSubmit()" class="video-input">
-             
-            <div class="form-control">
-                <label for="video" class="stats-label"></label>
-                <input [(ngModel)]="videoUrl" type="text" id="video" class="video-input" [ngModelOptions]="{ standalone: true }" >
-            </div>
-
-            <button type="submit">{{'video.submit' | translate}} &#8594;</button>
-
+        <form [formGroup]="videoForm" (ngSubmit)="onVideoSubmit()" class="video-input">
+          <div class="form-control">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>{{ 'video.label' | translate }}</mat-label>
+              <input matInput formControlName="videoUrl" id="video">
+              <mat-error *ngIf="videoForm.get('videoUrl')?.hasError('required')">{{ 'video.required' | translate }}</mat-error>
+              <mat-error *ngIf="videoForm.get('videoUrl')?.hasError('pattern')">{{ 'video.invalidUrl' | translate }}</mat-error>
+            </mat-form-field>
+          </div>
+    
+          <button type="submit">{{ 'video.submit' | translate }} &#8594;</button>
         </form>
-    </div>
+      </div>
 
     <div class="content">
         <mat-tab-group dynamicHeight>

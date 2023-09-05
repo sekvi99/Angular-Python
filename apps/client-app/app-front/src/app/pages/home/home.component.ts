@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { YoutubeStatsService } from 'src/app/services/youtube.stats-service';
 import { YouTubeStatsDto } from 'src/app/models/yt-stats/yt.stats-dto';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,13 +13,22 @@ export class HomeComponent {
 
   videoUrl: string = '';
   stats!: YouTubeStatsDto;
+  videoForm!: FormGroup;
 
-  constructor(private youTubeStatsService: YoutubeStatsService) { }
+  constructor(
+    private youTubeStatsService: YoutubeStatsService,
+    private formBuilder: FormBuilder // Inject the FormBuilder
+  ) {
+    this.videoForm = this.formBuilder.group({
+      videoUrl: ['', [Validators.required]]
+    });
+  }
 
-  onVideoSubmit(): void{
-    console.log(this.videoUrl);
-    if (this.videoUrl.length > 0) {
-      this.youTubeStatsService.getStats(this.videoUrl).subscribe(
+  onVideoSubmit(): void {
+    console.log(this.videoForm.value.videoUrl);
+
+    if (this.videoForm.valid) {
+      this.youTubeStatsService.getStats(this.videoForm.value.videoUrl).subscribe(
         res => {
           this.stats = res;
           console.log(this.stats);
@@ -27,9 +37,8 @@ export class HomeComponent {
           console.log('Error', error);
         }
       );
-
-    }else {
-      console.log(`Can not process this url: ${this.videoUrl}`);
+    } else {
+      console.log('Form is invalid.');
     }
   }
 

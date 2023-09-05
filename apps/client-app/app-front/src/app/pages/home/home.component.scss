@@ -12,29 +12,6 @@ form{
 
 .form-control{
     margin-bottom: 16px;
-
-    label{
-        font-size: 0.9rem;
-        font-weight: 500;
-        margin-bottom: 4px;
-    }
-
-    input{
-        padding: 8px;
-        height: 35px;
-        border-radius: 4px;
-        width: 100%;
-        border: none;
-        background-color: var(--white);
-
-    }
-
-    input:focus{
-        outline: none;
-        transition: 0.75s;
-        border: 1px solid var(--primary);
-    }
-
 }
 
 button{
@@ -50,4 +27,8 @@ button:hover{
     background-color: var(--primary);
     font-weight: 500;
     transition: 0.75s;
+}
+
+.full-width{
+    width: 100%;
 }
