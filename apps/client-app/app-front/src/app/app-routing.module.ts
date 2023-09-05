@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AuthGuard } from 'src/interceptors/auth-guard';
 import { LogoutComponent } from './common/logout/logout.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'about', component: AboutComponent, canActivate: [AuthGuard]},
   {path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
+  {path: 'register', component: RegisterComponent},
   {path: '**', component: LoginComponent} //! has to be last one
 
 ];

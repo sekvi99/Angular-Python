@@ -18,7 +18,13 @@ import { LogoutComponent } from './common/logout/logout.component';
 import { StatsDashboardComponent } from './common/stats-dashboard/stats-dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { RegisterComponent } from './pages/register/register.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -31,15 +37,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TableFilterComponent,
     TranslatorComponent,
     LogoutComponent,
-    StatsDashboardComponent
+    StatsDashboardComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     MatTabsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -48,7 +60,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       }
     })
   ],
-  providers: [],
+  providers: [ {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

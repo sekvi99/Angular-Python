@@ -17,5 +17,11 @@
     "stats.comments": "Komentarze: ",
     "stats.likes": "Polubienia: ",
     "stats.favourites": "Ulubione: ",
-    "stats.views": "Wyświetlenia : "
+    "stats.views": "Wyświetlenia : ",
+
+    "registerForm.usernameLabel": "Podaj Nazwę Użytkownika",
+    "registerForm.emailLabel": "Podaj Email",
+    "registerForm.passwordLabel": "Podaj Hasło",
+    "registerForm.connectMailLabel": "Podaj Powiązany Email",
+    "registerForm.submit": "Zarejestruj Się"
 }

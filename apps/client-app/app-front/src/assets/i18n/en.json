@@ -16,5 +16,11 @@
     "stats.comments": "Comments: ",
     "stats.likes": "Likes: ",
     "stats.favourites": "Favourites: ",
-    "stats.views": "Views: "
+    "stats.views": "Views: ",
+
+    "registerForm.usernameLabel": "Provide Username",
+    "registerForm.emailLabel": "Provide Email",
+    "registerForm.passwordLabel": "Provide Password",
+    "registerForm.connectMailLabel": "Provide Connected Email",
+    "registerForm.submit": "Register"
 }
