@@ -24,7 +24,11 @@
                 <h4 class="stats-header">{{'stats.favourites' | translate}} <span>{{stats?.favourites}}</span></h4>
                 <h4 class="stats-header">{{'stats.views' | translate}} <span>{{stats?.views}}</span></h4>
             </mat-tab>
-            <mat-tab label="Dashboard">D</mat-tab>
+            <mat-tab label="Dashboard">
+              <app-stats-dashboard
+              [data]="stats"
+              ></app-stats-dashboard>
+            </mat-tab>
         </mat-tab-group>
     </div>
 
